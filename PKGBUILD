@@ -1,0 +1,16 @@
+pkgname=pdfjs-legacy
+pkgver=5.4.54
+pkgrel=1
+pkgdesc="PDF reader in javascript - legacy distribution"
+conflicts=(pdfjs)
+arch=('any')
+url="https://mozilla.github.io/pdf.js/"
+license=('Apache-2.0')
+source=("https://github.com/mozilla/pdf.js/releases/download/v${pkgver}/pdfjs-${pkgver}-legacy-dist.zip")
+sha256sums=('cebbae3903847088be128ddcdd7243eae2985fdc9b553e5b4519282624443df9')
+
+package() {
+  mkdir -p "$pkgdir/usr/share/pdf.js"
+  cp -R "$srcdir"/{LICENSE,build,web} "$pkgdir/usr/share/pdf.js"
+  find "$pkgdir" -type f -exec chmod 644 {} \;  
+}
